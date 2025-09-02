@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/PrajwalBambulkar/two-tier-flask-app.git'
     targetRevision: main
-    path: k8s
+    path: k8s/two-tier   # only two-tier app resources
   destination:
     server: https://kubernetes.default.svc
     namespace: default
