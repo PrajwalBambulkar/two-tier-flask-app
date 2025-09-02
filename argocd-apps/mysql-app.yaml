@@ -9,6 +9,10 @@ spec:
     repoURL: 'https://github.com/PrajwalBambulkar/two-tier-flask-app.git'
     targetRevision: main
     path: k8s
+    directory:
+      recurse: true
+      include: "mysql-*.yaml"   # only include files starting with mysql-
+      exclude: "two-tier-*.yaml" # exclude app-related manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -16,11 +20,9 @@ spec:
     automated:
       prune: true
       selfHeal: true
-  # only apply mysql files
   ignoreDifferences:
     - group: ""
       kind: Service
       name: mysql
       jsonPointers:
         - /spec/clusterIP
-
